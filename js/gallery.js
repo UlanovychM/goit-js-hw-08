@@ -112,6 +112,7 @@ const galleryLink = document.querySelectorAll('.gallery-link');
 galleryLink.forEach(img =>
 	img.addEventListener('click', event => {
 		event.preventDefault();
+		img.style.width = '24px';
 	})
 );
 
