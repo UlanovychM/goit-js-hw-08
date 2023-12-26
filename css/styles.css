@@ -68,6 +68,7 @@ body {
 .gallery-image {
 	width: 360px;
 	height: 200px;
+	transition: transform 0.2s;
 }
 
 .gallery-image:hover {
