@@ -73,12 +73,12 @@ const createImg = images
 		const { preview, original, description } = img;
 
 		return `<li class="gallery-item">
-  <a class="gallery-link" href=${original}>
+  <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
-      src=${preview}
-      data-source=${original}
-      alt=${description}
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
     />
   </a>
 </li>`;
@@ -92,7 +92,7 @@ const handleClick = event => {
 	if (event.target.dataset.source !== undefined) {
 		const instance = basicLightbox.create(
 			`
-    <img src=${event.target.dataset.source} width="1112" height="640">
+    <img src="${event.target.dataset.source}" width="1112" height="640">
 `,
 			{
 				onShow: instance => {
