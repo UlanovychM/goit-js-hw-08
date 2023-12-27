@@ -87,6 +87,8 @@ const createImg = images
 
 gallery.innerHTML = createImg;
 
+// Version 2
+
 const createElem = e => {
 	const target = e.target;
 
@@ -117,27 +119,39 @@ const handleClick = event => {
 	event.preventDefault();
 	if (event.target.dataset.source !== undefined) {
 		createElem(event);
-		// 		const instance = basicLightbox.create(
-		// 			`
-		//     <img src="${event.target.dataset.source}" width="1112" height="640">
-		// `,
-		// 			{
-		// 				onShow: instance => {
-		// 					document.addEventListener('keydown', handleClose);
-		// 				},
-		// 				onClose: instance => {
-		// 					document.removeEventListener('keydown', handleClose);
-		// 				},
-		// 			}
-		// 		);
-		// 		function handleClose(e) {
-		// 			if (e.code === 'Escape') {
-		// 				instance.close();
-		// 			}
-		// 		}
-		// 		instance.show();
 	}
 	return;
 };
 
 gallery.addEventListener('click', handleClick);
+
+// Version 1
+
+// const handleClick = event => {
+// 	event.preventDefault();
+// 	if (event.target.dataset.source !== undefined) {
+// 		createElem(event);
+// 				const instance = basicLightbox.create(
+// 					`
+// 		    <img src="${event.target.dataset.source}" width="1112" height="640">
+// 		`,
+// 					{
+// 						onShow: instance => {
+// 							document.addEventListener('keydown', handleClose);
+// 						},
+// 						onClose: instance => {
+// 							document.removeEventListener('keydown', handleClose);
+// 						},
+// 					}
+// 				);
+// 				function handleClose(e) {
+// 					if (e.code === 'Escape') {
+// 						instance.close();
+// 					}
+// 				}
+// 				instance.show();
+// 	}
+// 	return;
+// };
+
+// gallery.addEventListener('click', handleClick);
