@@ -87,30 +87,55 @@ const createImg = images
 
 gallery.innerHTML = createImg;
 
+const createElem = e => {
+	const target = e.target;
+
+	const instance = basicLightbox.create(
+		`
+    <img src="${target.dataset.source}" width="1112" height="640">
+`,
+		{
+			onShow: instance => {
+				document.addEventListener('keydown', handleClose);
+			},
+			onClose: instance => {
+				document.removeEventListener('keydown', handleClose);
+			},
+		}
+	);
+
+	function handleClose(e) {
+		if (e.code === 'Escape') {
+			instance.close();
+		}
+	}
+
+	instance.show();
+};
+
 const handleClick = event => {
 	event.preventDefault();
 	if (event.target.dataset.source !== undefined) {
-		const instance = basicLightbox.create(
-			`
-    <img src="${event.target.dataset.source}" width="1112" height="640">
-`,
-			{
-				onShow: instance => {
-					document.addEventListener('keydown', handleClose);
-				},
-				onClose: instance => {
-					document.removeEventListener('keydown', handleClose);
-				},
-			}
-		);
-
-		function handleClose(e) {
-			if (e.code === 'Escape') {
-				instance.close();
-			}
-		}
-
-		instance.show();
+		createElem(event);
+		// 		const instance = basicLightbox.create(
+		// 			`
+		//     <img src="${event.target.dataset.source}" width="1112" height="640">
+		// `,
+		// 			{
+		// 				onShow: instance => {
+		// 					document.addEventListener('keydown', handleClose);
+		// 				},
+		// 				onClose: instance => {
+		// 					document.removeEventListener('keydown', handleClose);
+		// 				},
+		// 			}
+		// 		);
+		// 		function handleClose(e) {
+		// 			if (e.code === 'Escape') {
+		// 				instance.close();
+		// 			}
+		// 		}
+		// 		instance.show();
 	}
 	return;
 };
