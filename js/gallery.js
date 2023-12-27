@@ -87,32 +87,32 @@ const createImg = images
 
 gallery.innerHTML = createImg;
 
-const handelClick = event => {
+const handleClick = event => {
+	event.preventDefault();
 	if (event.target.dataset.source !== undefined) {
 		const instance = basicLightbox.create(
 			`
     <img src=${event.target.dataset.source} width="1112" height="640">
-`
+`,
+			{
+				onShow: instance => {
+					document.addEventListener('keydown', handleClose);
+				},
+				onClose: instance => {
+					document.removeEventListener('keydown', handleClose);
+				},
+			}
 		);
 
-		const handelClose = e => {
+		function handleClose(e) {
 			if (e.code === 'Escape') {
 				instance.close();
 			}
-		};
-		if (event.target !== undefined) {
-			instance.show();
 		}
-		gallery.addEventListener('keydown', handelClose);
+
+		instance.show();
 	}
 	return;
 };
 
-const galleryLink = document.querySelectorAll('.gallery-link');
-galleryLink.forEach(img =>
-	img.addEventListener('click', event => {
-		event.preventDefault();
-	})
-);
-
-gallery.addEventListener('click', handelClick);
+gallery.addEventListener('click', handleClick);
